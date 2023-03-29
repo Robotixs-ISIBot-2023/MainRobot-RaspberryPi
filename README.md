@@ -23,7 +23,10 @@ This is the main robot, it contains :
 
 ## Socials
 <!--[Site](https://arduitank.be) - [GitHub](https://github.com/ArduiTank) - [Discord](https://discord.gg/D77Vxmehk7)-->
+<br>
+<br>
 
+# 
 # FR
 # MainBot
 Le robot principal pour la compétition.
