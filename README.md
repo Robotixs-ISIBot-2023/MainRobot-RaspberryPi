@@ -5,7 +5,7 @@ The main bot for the competition.
 <a href="https://www.python.org/" target="_blank">
     <image src="https://img.shields.io/badge/Python-v3.6.9-3776AB.svg?logo=python&longCache=true&style=flat">
 </a>
-<a href="#">
+<a href="https://opencv.org/">
     <image src="https://img.shields.io/badge/OpenCV-v4.x.x-FFFFFF.svg?logo=OpenCV&longCache=true&style=flat">
 </a>
 <br>
@@ -32,7 +32,7 @@ Le robot principal pour la compétition.
 <a href="https://www.python.org/" target="_blank">
     <image src="https://img.shields.io/badge/Python-v3.6.9-3776AB.svg?logo=python&longCache=true&style=flat">
 </a>
-<a href="#">
+<a href="https://opencv.org/">
     <image src="https://img.shields.io/badge/OpenCV-v4.x.x-FFFFFF.svg?logo=OpenCV&longCache=true&style=flat">
 </a>
 <br>
