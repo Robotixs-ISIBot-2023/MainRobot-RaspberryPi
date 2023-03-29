@@ -1,6 +1,5 @@
-# EN
 FR below | FR en dessous
-# MainBot
+# [EN] MainBot
 The main bot for the competition.
 
 <a href="https://www.python.org/" target="_blank">
@@ -27,8 +26,7 @@ This is the main robot, it contains :
 <br>
 
 # 
-# FR
-# MainBot
+# [FR] MainBot
 Le robot principal pour la compétition.
 
 <a href="https://www.python.org/" target="_blank">
