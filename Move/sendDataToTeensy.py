@@ -44,6 +44,14 @@ bus = smbus.SMBus(1)
 #=========================================================================================================#
 
 def sendToTeensy(cmd):
+    """
+    Description : Bytes to send to the Teensy (backward and forward motors)
+    Actions : Send the 2 bytes datas in I²C at the specified device adress
+    
+    Input :
+        cmd (int) : data to send
+    Output : /
+    """
     try:
         data = struct.pack('>H', cmd)
         # Envoyer les bytes sur l'adresse du périphérique I2C
@@ -52,33 +60,79 @@ def sendToTeensy(cmd):
         print("[DEBUG] Failed to send data to Teensy")
 
 def goForward(mm):
+    """
+    Description : Give the mm to go forward
+    Actions : Send the mm + the action to make
+    
+    Input :
+        mm (int < 10000) : milimeters to move forward
+    Output : /
+    """
     if (mm < 10000):
         sendToTeensy(mm + 10000)
     else:
         print("[DEBUG - goForward] Too high value")
 
 def goBackward(mm):
+    """
+    Description : Give the mm to go backward
+    Actions : Send the mm + the action to make
+    
+    Input :
+        mm (int < 10000) : milimeters to move backward
+    Output : /
+    """
     if (mm < 10000):
         sendToTeensy(mm + 20000)
     else:
         print("[DEBUG - goBackward] Too high value")
 
 def turnRight(degrees):
+    """
+    Description : Give the degree(s) to turn clockwise
+    Actions : Send the degree(s) + the action to make
+    
+    Input :
+        degrees (int < 10000) : degree(s) to turn clockwise
+    Output : /
+    """
     if (degrees < 10000):
         sendToTeensy(degrees + 30000)
     else:
         print("[DEBUG - turnRight] Too high value")
 
 def turnLeft(degrees):
+    """
+    Description : Give the degree(s) to turn counter-clockwise
+    Actions : Send the degree(s) + the action to make
+    
+    Input :
+        degrees (int < 10000) : degree(s) to turn counter-clockwise
+    Output : /
+    """
     if (degrees < 10000):
         sendToTeensy(degrees + 40000)
     else:
         print("[DEBUG - turnLeft] Too high value")
 
 def stopMove():
+    """
+    Description : To stop the movement
+    Actions : Sends the number corresponding to the action to make
+    
+    Input : /
+    Output : /
+    """
     sendToTeensy(50000)
 
 def emergencyStopMove():
+    """
+    Description : To stop the movement
+    Actions : Sends the number corresponding to the action to make
+    
+    Input : /
+    Output : /
+    """
     sendToTeensy(60000)
 
 #=========================================================================================================#
