@@ -12,7 +12,7 @@ print("                 _| |_ ____) |_| |_| |_) | (_) | |_     >==() | | ()/")
 print("                |_____|_____/|_____|____/ \\___/ \\__|        _(___)_") 
 print("                                                           [-]   [-]") 
 print("") 
-print(" @NoWayCall                                                                   28/03/23") 
+print(" @NoWayCall & AntoDB                                                           29/03/23") 
 print("=======================================================================================") 
  
 # Affichage des commandes possibles 
@@ -46,11 +46,41 @@ bus = smbus.SMBus(1)
 
 def sendToTeensy(cmd):
     try:
-        global bus, DEVICE_ADDR
         data = struct.pack('>H', cmd)
-        bus.write_i2c_block_data(DEVICE_ADDR, 0, list(data)) # Envoyer les bytes sur l'adresse du périphérique I2C
+        # Envoyer les bytes sur l'adresse du périphérique I2C
+        bus.write_i2c_block_data(DEVICE_ADDR, 0, list(data))
     except:
-        print("[DEBUG] Failed to send data")
+        print("[DEBUG] Failed to send data to Teensy")
+
+def goForward(mm):
+    if (mm < 10000):
+        sendToTeensy(mm + 10000)
+    else:
+        print("[DEBUG - goForward] Too high value")
+
+def goBackward(mm):
+    if (mm < 10000):
+        sendToTeensy(mm + 20000)
+    else:
+        print("[DEBUG - goBackward] Too high value")
+
+def turnRight(degrees):
+    if (degrees < 10000):
+        sendToTeensy(degrees + 30000)
+    else:
+        print("[DEBUG - turnRight] Too high value")
+
+def turnLeft(degrees):
+    if (degrees < 10000):
+        sendToTeensy(degrees + 40000)
+    else:
+        print("[DEBUG - turnLeft] Too high value")
+
+def stopMove():
+    sendToTeensy(50000)
+
+def emergencyStopMove():
+    sendToTeensy(60000)
 
 if __name__ == '__main__':
     while True: 
