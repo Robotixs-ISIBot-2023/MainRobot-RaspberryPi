@@ -64,6 +64,8 @@ def subscribe(userdata):
 #=========================================================================================================#
 
 if __name__ == '__main__':
+    import time
+    
     print("=======================================================================================")
     print("                                                              |_| ") 
     print("                 _____  _____ _____ ____        _            (* *)") 
@@ -78,3 +80,15 @@ if __name__ == '__main__':
     print("=======================================================================================") 
 
     print("Nothing to see here :p")
+
+    # Initialize variables
+    Commande = 0
+    userdata = {"Commande": Commande}
+
+    # Subscribe to MQTT broker
+    subscribe(userdata)
+
+    # Wait for incoming messages and update variables
+    while True:
+        print("Commande:", Commande)
+        time.sleep(1)
