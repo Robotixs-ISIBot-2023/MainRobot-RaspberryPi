@@ -26,7 +26,8 @@ import paho.mqtt.client as mqtt
 #================================================== Parameters ==================================================#
 
 # MQTT broker address
-broker_address = "172.30.16.20"
+#broker_address = "172.30.16.20" # Jetson IP (because the MQTT broker is in the Jetson)
+broker_address = "192.168.0.228"
 
 # Create a client instance
 client = mqtt.Client()
