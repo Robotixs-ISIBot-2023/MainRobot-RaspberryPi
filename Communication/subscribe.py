@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-ISIBot - Send datas to topic MQTT
+ISIBot - Catch datas to topic MQTT
 
 Created on Apr 04 2023
 Last modification on Apr 04 2023
