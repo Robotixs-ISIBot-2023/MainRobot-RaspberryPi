@@ -15,7 +15,7 @@ Authors :
 
 #=========================================================================================================#
 
-import paho.mqtt.client as mqtt
+from MQTTconnection import *
 
 #=========================================================================================================#
 
@@ -34,9 +34,6 @@ import paho.mqtt.client as mqtt
 
 #=========================================================================================================#
 
-# MQTT broker address
-broker_address = "172.30.40.78"
-
 # Define the function to handle incoming messages
 def on_message(client, userdata, message):
     print("Received message on topic {}: {}".format(message.topic, message.payload))
@@ -44,12 +41,6 @@ def on_message(client, userdata, message):
         userdata["Commande"] = int(message.payload.decode())
 
 def subscribe(userdata):
-    # Create a client instance
-    client = mqtt.Client(userdata=userdata)
-
-    # Connect to the broker
-    client.connect(broker_address)
-
     # Start the background thread for MQTT communication
     client.loop_start()
 
@@ -65,7 +56,7 @@ def subscribe(userdata):
 
 if __name__ == '__main__':
     import time
-    
+
     print("=======================================================================================")
     print("                                                              |_| ") 
     print("                 _____  _____ _____ ____        _            (* *)") 
