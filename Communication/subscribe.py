@@ -38,9 +38,9 @@ from MQTTconnection import *
 def on_message(client, userdata, message):
     print("Received message on topic {}: {}".format(message.topic, message.payload))
     if message.topic == "main_move":
-        userdata["Commande"] = int(message.payload.decode())
+        datas["Commande"] = int(message.payload.decode())
 
-def subscribe(userdata):
+def subscribe():
     # Start the background thread for MQTT communication
     client.loop_start()
 
@@ -56,6 +56,7 @@ def subscribe(userdata):
 
 if __name__ == '__main__':
     import time
+    global datas, Commande
 
     print("=======================================================================================")
     print("                                                              |_| ") 
@@ -73,13 +74,13 @@ if __name__ == '__main__':
     print("Nothing to see here :p")
 
     # Initialize variables
-    Commande = 0
-    userdata = {"Commande": Commande}
+    datas = {"Commande": 0}
 
     # Subscribe to MQTT broker
-    subscribe(userdata)
+    subscribe()
 
     # Wait for incoming messages and update variables
     while True:
-        print("Commande:", Commande)
+        print("DEBUG1 Commande:", datas["Commande"])
+        datas["Commande"] = 0
         time.sleep(1)
