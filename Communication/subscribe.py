@@ -40,14 +40,6 @@ def on_message(client, userdata, message):
     if message.topic == datas["topic1"]:
         datas["Commande"] = int(message.payload.decode())
 
-def subscribe(topic):
-    # Start the background thread for MQTT communication
-    client.loop_start()
-
-    # Check for new messages on topic
-    client.subscribe(topic)
-    client.on_message = on_message  # Define the function to handle incoming messages
-
 #=========================================================================================================#
 
                 #-------------------- If directly excute, make that --------------------#
@@ -76,8 +68,14 @@ if __name__ == '__main__':
     # Initialize variables
     datas = {"Commande": 0, "topic1" : "main_move"}
 
-    # Subscribe to MQTT broker
-    subscribe(datas["topic1"])
+    # ===== Subscribe to MQTT broker ===== #
+    # Start the background thread for MQTT communication
+    client.loop_start()
+
+    # Check for new messages on topic
+    client.subscribe(datas["topic1"])
+    client.on_message = on_message  # Define the function to handle incoming messages
+    # ===== ===== #
 
     # Wait for incoming messages and update variables
     while True:
