@@ -66,7 +66,7 @@ if __name__ == '__main__':
     print("Nothing to see here :p")
 
     # Initialize variables
-    datas = {"Commande": 0, "topic1" : "main_move"}
+    datas = {"Commande": 0, "topic1" : str(input("Entrez un nom de topic (sub) : "))}
 
     # ===== Subscribe to MQTT broker ===== #
     # Start the background thread for MQTT communication
@@ -79,6 +79,6 @@ if __name__ == '__main__':
 
     # Wait for incoming messages and update variables
     while True:
-        print("DEBUG1 Commande:", datas["Commande"])
+        print("Commande:", datas["Commande"])
         datas["Commande"] = 0
         time.sleep(1)
