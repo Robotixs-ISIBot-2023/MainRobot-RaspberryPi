@@ -75,7 +75,7 @@ RIEN (tout stocker en 1 pile)
 """
 ETAGE JAUNE
 La séquence à effectuer pour faire des gâteaux :
-- pince niveau haut
+- pince niveau moyen
 - ouvrir pince
 - monter pince
 - avancer d'un gâteau
@@ -87,7 +87,7 @@ La séquence à effectuer pour faire des gâteaux :
 - ouvrir pince
 - monter pince
 - avancer 2 gâteaux
-- pince niveau moyen
+- pince niveau haut
 - fermer pince
 - monter pince
 - reculer 2 gâteaux (pour prendre l'étage rose 2)
@@ -95,7 +95,12 @@ La séquence à effectuer pour faire des gâteaux :
 - ouvrir pince
 - monter pince
 - avancer d'un gâteau
-- pince niveau haut
+- pince niveau moyen
+- fermer pince
+- pince niveau bas
+- ouvrir pince
+- pince niveau milieu (un peu plus haut)
+- reculer d'un gâteau
 - fermer pince
 - monter pince
 """
