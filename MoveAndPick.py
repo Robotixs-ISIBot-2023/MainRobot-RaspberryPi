@@ -60,4 +60,15 @@ print("=========================================================================
 
 #=========================================================================================================#
 
+goForward(275)
+# First sequence for cake here
 goForward(200)
+# Sequence for cake here
+
+# IF BLUE
+turnLeft(90)
+
+# IF GREEN
+turnRight(90)
+
+goForward(300)
