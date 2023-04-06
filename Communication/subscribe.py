@@ -62,8 +62,8 @@ if __name__ == '__main__':
     print("") 
     print(" @AntoDB                                                                       04/04/23") 
     print("=======================================================================================") 
-
-    print("Nothing to see here :p")
+    print("")
+    print("=> Commande ?")
 
     # Initialize variables
     datas = {"Commande": 0, "topic1" : str(input("Entrez un nom de topic (sub) : "))}
