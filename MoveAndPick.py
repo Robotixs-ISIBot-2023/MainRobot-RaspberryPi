@@ -16,6 +16,9 @@ Authors :
 #=========================================================================================================#
 
 from Move.sendDataToTeensy import *
+from Communication.subscribe import *
+from Communication.publish import publish
+import time
 
 print("=======================================================================================")
 print("                                                              |_| ") 
@@ -74,3 +77,24 @@ turnRight(90)
 goForward(300)
 
 # Relay with camera on Jetson
+
+"""
+    MQTT communication
+"""
+# Initialize variables
+datas = {"Commande": 0, "topic1" : "main_move"}
+
+# ===== Subscribe to MQTT broker ===== #
+# Start the background thread for MQTT communication
+client.loop_start()
+
+# Check for new messages on topic
+client.subscribe(datas["topic1"])
+client.on_message = on_message  # Define the function to handle incoming messages
+# ===== ===== #
+
+# Wait for incoming messages and update variables
+while True:
+    print("Commande:", datas["Commande"])
+    datas["Commande"] = 0
+    time.sleep(1)
