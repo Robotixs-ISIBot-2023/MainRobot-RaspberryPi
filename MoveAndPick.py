@@ -15,7 +15,7 @@ Authors :
 
 #=========================================================================================================#
 
-from Move.sendDataToTeensy import *
+#from Move.sendDataToTeensy import *
 from Communication.subscribe import *
 from Communication.publish import publish
 import time
@@ -63,18 +63,50 @@ print("=========================================================================
 
 #=========================================================================================================#
 
-goForward(275)
+#goForward(275) # Avancer à la première réserve d'étage gâteau
 # First sequence for cake here
-goForward(200)
+"""
+ETAGE ROSE
+La séquence à effectuer pour faire des gâteaux (sans remplir tout le réservoir) :
+RIEN (tout stocker en 1 pile)
+"""
+#goForward(200) # Avancer à la prochaine réserve d'étage gâteau
 # Sequence for cake here
+"""
+ETAGE JAUNE
+La séquence à effectuer pour faire des gâteaux :
+- pince niveau haut
+- ouvrir pince
+- monter pince
+- avancer d'un gâteau
+- pince niveau bas
+- fermer pince
+- monter pince
+- reculer de 2 gâteau (pour prendre l'étage rose)
+- pince niveau haut
+- ouvrir pince
+- monter pince
+- avancer 2 gâteaux
+- pince niveau moyen
+- fermer pince
+- monter pince
+- reculer 2 gâteaux (pour prendre l'étage rose 2)
+- pince niveau moyen
+- ouvrir pince
+- monter pince
+- avancer d'un gâteau
+- pince niveau haut
+- fermer pince
+- monter pince
+"""
 
 # IF BLUE
-turnLeft(90)
+#turnLeft(90)
 
 # IF GREEN
-turnRight(90)
+#turnRight(90)
 
-goForward(300)
+#goForward(300)
 
 # Relay with camera on Jetson
 
