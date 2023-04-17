@@ -16,9 +16,7 @@ Authors :
 #=========================================================================================================#
 
 #from Move.sendDataToTeensy import *
-#from Communication.subscribe import *
 from Communication.publish import *
-from Communication.subscribe2 import subscribe
 
 import time
 
@@ -47,7 +45,11 @@ print("=========================================================================
 
 #================================================== Don't touch ==================================================#
 
-# NOTHING HERE FOR THE MOMEMENT
+"""
+    MQTT communication
+"""
+# MQTT Topics
+topics = {"main_start" : 0, "main_move_straight" : 0, "main_move_turn" : 0}
 
 #=========================================================================================================#
 
@@ -55,9 +57,34 @@ print("=========================================================================
 
 #=========================================================================================================#
 
-#================================================== Operations ==================================================#
+#================================================== MQTT communication ==================================================#
 
-# NOTHING HERE FOR THE MOMEMENT
+# Initialize variables
+datas = {"Commande": 0, "topic1" : "main_move"}
+
+
+
+# ===== Subscribe to MQTT broker ===== #
+# Initialize variables
+def on_message(client, datas: dict, message):
+    print("Received message on topic {}: {}".format(message.topic, message.payload))
+    if message.topic == "main_move":
+        datas["Commande"] = int(message.payload.decode())
+        print("DEBUG1")
+
+# Start the background thread for MQTT communication
+client.loop_start()
+
+# Check for new messages on topic "main_move"
+client.subscribe("main_move")
+client.on_message = on_message
+
+# Wait for incoming messages and update variables
+while True:
+    print("Commande:", datas["Commande"])
+    datas["Commande"] = 0
+    time.sleep(1)
+
 
 #=========================================================================================================#
 
@@ -117,21 +144,3 @@ La séquence à effectuer pour faire des gâteaux :
 
 # Relay with camera on Jetson
 
-"""
-    MQTT communication
-"""
-# Initialize variables
-datas = {"Commande": 0, "topic1" : "main_move"}
-
-# ===== Subscribe to MQTT broker ===== #
-# Initialize variables
-Commande = 0
-userdata = {"Commande": Commande}
-
-# Subscribe to MQTT broker
-subscribe(userdata)
-
-# Wait for incoming messages and update variables
-while True:
-    print("Commande:", Commande)
-    time.sleep(1)
