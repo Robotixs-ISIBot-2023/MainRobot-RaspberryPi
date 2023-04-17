@@ -59,10 +59,7 @@ topics = {"main_start" : 0, "color" : "null", "main_move_straight" : 0, "main_mo
 
 #================================================== MQTT communication ==================================================#
 
-# Initialize variables
-
-# ===== Subscribe to MQTT broker ===== #
-# Initialize variables
+# Wait for incoming messages and update variables
 def on_message(client, userdata, message):
     global topics
     print("Received message on topic {}: {}".format(message.topic, message.payload))
@@ -82,21 +79,24 @@ def on_message(client, userdata, message):
 # Start the background thread for MQTT communication
 client.loop_start()
 
+# ===== Subscribe to MQTT broker ===== #
 # Subscribe for new messages on topics
 for key in topics:
     #print(key)
     client.subscribe(key)
 client.on_message = on_message
 
-while topics["main_start"] == 0:
-    print("WAIT")
-    print(topics["main_start"])
-    time.sleep(1)
 
 """
-    MQTT communication
+    MAIN CODE
 """
-# Wait for incoming messages and update variables
+
+# Wait the start & the color
+while topics["main_start"] == 0 or topics["color"] == "null":
+    print("Waiting the start & the color")
+    # Do nothing
+
+# When start :
 while True:
     print("Commande:", topics["main_move_straight"])
     topics["main_move_straight"] = 0
