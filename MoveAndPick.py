@@ -49,7 +49,7 @@ print("=========================================================================
     MQTT communication
 """
 # MQTT Topics
-topics = {"main_start" : 0, "main_move_straight" : 0, "main_move_turn" : 0}
+topics = {"main_start" : 0, "color" : "null", "main_move_straight" : 0, "main_move_turn" : 0}
 
 #=========================================================================================================#
 
@@ -66,18 +66,36 @@ topics = {"main_start" : 0, "main_move_straight" : 0, "main_move_turn" : 0}
 def on_message(client, userdata, message):
     global topics
     print("Received message on topic {}: {}".format(message.topic, message.payload))
-    if message.topic == "main_move_straight":
-        topics["main_move_straight"] = int(message.payload.decode())
+    for key in topics:
+        if message.topic == key:
+            topics[key] = int(message.payload.decode())
 
+#=========================================================================================================#
+
+                            #-------------------- Executed code --------------------#
+
+#=========================================================================================================#
+
+"""
+    MQTT communication
+"""
 # Start the background thread for MQTT communication
 client.loop_start()
 
-# Check for new messages on topic "main_move"
+# Subscribe for new messages on topics
 for key in topics:
     #print(key)
     client.subscribe(key)
 client.on_message = on_message
 
+while topics["main_start"] == 0:
+    print("WAIT")
+    print(topics["main_start"])
+    time.sleep(1)
+
+"""
+    MQTT communication
+"""
 # Wait for incoming messages and update variables
 while True:
     print("Commande:", topics["main_move_straight"])
@@ -85,11 +103,6 @@ while True:
     time.sleep(1)
 
 
-#=========================================================================================================#
-
-                            #-------------------- Executed code --------------------#
-
-#=========================================================================================================#
 
 #goForward(275) # Avancer à la première réserve d'étage gâteau
 # First sequence for cake here
