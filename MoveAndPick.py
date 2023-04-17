@@ -45,6 +45,8 @@ print("=========================================================================
 
 #================================================== Don't touch ==================================================#
 
+flag_start_move = True
+
 """
     MQTT communication
 """
@@ -102,61 +104,66 @@ while topics["main_start"] == 0 or topics["color"] == "null":
 
 # When start :
 while True:
-    print("Commande:", topics["main_move_straight"])
-    topics["main_move_straight"] = 0
-    time.sleep(1)
+    if flag_start_move:
+        #goForward(275) # Avancer à la première réserve d'étage gâteau
+        # First sequence for cake here
+        """
+        ETAGE ROSE
+        La séquence à effectuer pour faire des gâteaux (sans remplir tout le réservoir) :
+        RIEN (tout stocker en 1 pile)
+        """
+        #goForward(200) # Avancer à la prochaine réserve d'étage gâteau
+        # Sequence for cake here
+        """
+        ETAGE JAUNE
+        La séquence à effectuer pour faire des gâteaux :
+        - pince niveau moyen
+        - ouvrir pince
+        - monter pince
+        - avancer d'un gâteau
+        - pince niveau bas
+        - fermer pince
+        - monter pince
+        - reculer de 2 gâteau (pour prendre l'étage rose)
+        - pince niveau haut
+        - ouvrir pince
+        - monter pince
+        - avancer 2 gâteaux
+        - pince niveau haut
+        - fermer pince
+        - monter pince
+        - reculer 2 gâteaux (pour prendre l'étage rose 2)
+        - pince niveau moyen
+        - ouvrir pince
+        - monter pince
+        - avancer d'un gâteau
+        - pince niveau moyen
+        - fermer pince
+        - pince niveau bas
+        - ouvrir pince
+        - pince niveau milieu (un peu plus haut)
+        - reculer d'un gâteau
+        - fermer pince
+        - monter pince
+        """
 
+        # IF BLUE
+        if  topics["color"] == "blue":
+            print("Blue")
+            #turnLeft(90)
 
+        # IF GREEN
+        if  topics["color"] == "green":
+            print("Green")
+            #turnRight(90)
 
-#goForward(275) # Avancer à la première réserve d'étage gâteau
-# First sequence for cake here
-"""
-ETAGE ROSE
-La séquence à effectuer pour faire des gâteaux (sans remplir tout le réservoir) :
-RIEN (tout stocker en 1 pile)
-"""
-#goForward(200) # Avancer à la prochaine réserve d'étage gâteau
-# Sequence for cake here
-"""
-ETAGE JAUNE
-La séquence à effectuer pour faire des gâteaux :
-- pince niveau moyen
-- ouvrir pince
-- monter pince
-- avancer d'un gâteau
-- pince niveau bas
-- fermer pince
-- monter pince
-- reculer de 2 gâteau (pour prendre l'étage rose)
-- pince niveau haut
-- ouvrir pince
-- monter pince
-- avancer 2 gâteaux
-- pince niveau haut
-- fermer pince
-- monter pince
-- reculer 2 gâteaux (pour prendre l'étage rose 2)
-- pince niveau moyen
-- ouvrir pince
-- monter pince
-- avancer d'un gâteau
-- pince niveau moyen
-- fermer pince
-- pince niveau bas
-- ouvrir pince
-- pince niveau milieu (un peu plus haut)
-- reculer d'un gâteau
-- fermer pince
-- monter pince
-"""
+        #goForward(300)
 
-# IF BLUE
-#turnLeft(90)
-
-# IF GREEN
-#turnRight(90)
-
-#goForward(300)
-
-# Relay with camera on Jetson
+        # Relay with camera on Jetson
+        flag_start_move = False
+    else:
+        print("En automatique - Jetson")
+        print("Commande:", topics["main_move_straight"])
+        topics["main_move_straight"] = 0
+        time.sleep(1)
 
