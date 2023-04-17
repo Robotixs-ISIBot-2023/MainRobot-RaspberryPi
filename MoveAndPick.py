@@ -16,8 +16,10 @@ Authors :
 #=========================================================================================================#
 
 #from Move.sendDataToTeensy import *
-from Communication.subscribe import *
-from Communication.publish import publish
+#from Communication.subscribe import *
+from Communication.publish import *
+from Communication.subscribe2 import subscribe
+
 import time
 
 print("=======================================================================================")
@@ -122,16 +124,14 @@ La séquence à effectuer pour faire des gâteaux :
 datas = {"Commande": 0, "topic1" : "main_move"}
 
 # ===== Subscribe to MQTT broker ===== #
-# Start the background thread for MQTT communication
-client.loop_start()
+# Initialize variables
+Commande = 0
+userdata = {"Commande": Commande}
 
-# Check for new messages on topic
-client.subscribe(datas["topic1"])
-client.on_message = on_message  # Define the function to handle incoming messages
-# ===== ===== #
+# Subscribe to MQTT broker
+subscribe(userdata)
 
 # Wait for incoming messages and update variables
 while True:
-    print("Commande:", datas["Commande"])
-    datas["Commande"] = 0
+    print("Commande:", Commande)
     time.sleep(1)
