@@ -65,7 +65,11 @@ def on_message(client, userdata, message):
     print("Received message on topic {}: {}".format(message.topic, message.payload))
     for key in topics:
         if message.topic == key:
-            topics[key] = int(message.payload.decode())
+            msg = message.payload.decode()
+            if msg.isdigit():
+                topics[key] = int(msg)
+            else:
+                topics[key] = msg
 
 #=========================================================================================================#
 
