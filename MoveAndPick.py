@@ -60,31 +60,28 @@ topics = {"main_start" : 0, "main_move_straight" : 0, "main_move_turn" : 0}
 #================================================== MQTT communication ==================================================#
 
 # Initialize variables
-datas = {"Commande": 0, "topic1" : "main_move"}
-
-information = 0
 
 # ===== Subscribe to MQTT broker ===== #
 # Initialize variables
 def on_message(client, userdata, message):
-    global information
+    global topics
     print("Received message on topic {}: {}".format(message.topic, message.payload))
-    if message.topic == "main_move":
-        information = int(message.payload.decode())
-        print("DEBUG1")
+    if message.topic == "main_move_straight":
+        topics["main_move_straight"] = int(message.payload.decode())
 
 # Start the background thread for MQTT communication
 client.loop_start()
 
 # Check for new messages on topic "main_move"
-client.subscribe("main_move")
+for key in topics:
+    #print(key)
+    client.subscribe(key)
 client.on_message = on_message
-print("DEBUG0")
 
 # Wait for incoming messages and update variables
 while True:
-    print("Commande:", information)
-    information = 0
+    print("Commande:", topics["main_move_straight"])
+    topics["main_move_straight"] = 0
     time.sleep(1)
 
 
