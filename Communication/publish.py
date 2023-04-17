@@ -15,8 +15,9 @@ Authors :
 
 #=========================================================================================================#
 
-#from Communication.MQTTconnection import *
-from MQTTconnection import *
+# If file call in another file (not executed as main)
+if __name__ != '__main__':
+    from Communication.MQTTconnection import *
 
 #=========================================================================================================#
 
