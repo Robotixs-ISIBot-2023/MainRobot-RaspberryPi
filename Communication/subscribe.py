@@ -35,11 +35,27 @@ from Communication.MQTTconnection import *
 #=========================================================================================================#
 
 # Define the function to handle incoming messages
-def on_message(client, datas, message):
+def on_message(client, datas: dict, message):
     print("Received message on topic {}: {}".format(message.topic, message.payload))
     if message.topic == datas["topic1"]:
         datas["Commande"] = int(message.payload.decode())
+        print("DEBUG1")
+"""
+def subscribe(datas):
+    # Create a client instance
+    global client
+    client = mqtt.Client(datas=datas)
 
+    # Connect to the broker
+    client.connect(broker_address)
+
+    # Start the background thread for MQTT communication
+    client.loop_start()
+
+    # Check for new messages on topic "main_move"
+    client.subscribe(datas["topic1"])
+    client.on_message = on_message  # Define the function to handle incoming messages
+"""
 #=========================================================================================================#
 
                 #-------------------- If directly excute, make that --------------------#
@@ -48,7 +64,7 @@ def on_message(client, datas, message):
 
 if __name__ == '__main__':
     import time
-    global datas, Commande
+    global datas
 
     print("=======================================================================================")
     print("                                                              |_| ") 
@@ -68,14 +84,19 @@ if __name__ == '__main__':
     # Initialize variables
     datas = {"Commande": 0, "topic1" : str(input("Entrez un nom de topic (sub) : "))}
 
+    """
     # ===== Subscribe to MQTT broker ===== #
     # Start the background thread for MQTT communication
     client.loop_start()
 
     # Check for new messages on topic
     client.subscribe(datas["topic1"])
-    client.on_message = on_message  # Define the function to handle incoming messages
+    client.on_message = on_message()  # Define the function to handle incoming messages
     # ===== ===== #
+    """
+
+    # Subscribe to MQTT broker
+    #subscribe(datas)
 
     # Wait for incoming messages and update variables
     while True:
