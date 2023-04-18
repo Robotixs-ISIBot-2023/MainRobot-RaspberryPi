@@ -170,14 +170,22 @@ while True:
         flag_start_move = False
     else:
         # In automatic - Jetson
+        publish("main_send_cameradata", 1) # Ask the Jetson to send data | CAUTION Wait until the robot stop moving
+
         print("main_move_straight: ", topics["main_move_straight"])
         print("main_move_turn: ", topics["main_move_turn"])
+        # If go forward
         if float(topics["main_move_straight"]) > 0 :
             #goForward(topics["main_move_straight"])
             continue
+        # If go backward
         elif float(topics["main_move_straight"]) < 0 :
             #goBackward(topics["main_move_straight"])
             continue
+
+        # RESET VARIABLES
+        publish("main_move_straight", 0)
+        publish("main_move_turn", 0)
         topics["main_move_straight"] = 0
         topics["main_move_turn"] = 0
         time.sleep(1)
