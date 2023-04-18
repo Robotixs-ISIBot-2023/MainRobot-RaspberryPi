@@ -38,10 +38,10 @@ flag_start_move = True
     MQTT communication
 """
 # MQTT Topics
-topics = {"main_start" : 0, "color" : "null", "main_send_cameradata" : 0, "main_move_straight" : 0, "main_move_turn" : 0}
+topics = {"main_start" : 0, "teamcolor" : "null", "main_send_cameradata" : 0, "main_move_straight" : 0, "main_move_turn" : 0}
 """
 main_start : 0 par défaut, 1 pour lancer # Aussi avec button
-color : null par défaut, blue or green pour choisir # Aussi avec button
+teamcolor : null par défaut, blue or green pour choisir # Aussi avec button
 main_send_cameradata : 0 par défaut ou pour stop, 1 pour envoyer des données de déplacement caméra
 main_move_straight : INT donnée par la caméra pour avancer/reculer
 main_move_turn : INT donnée par la caméra pour tourner
@@ -104,8 +104,8 @@ client.on_message = on_message
     MAIN CODE
 """
 
-# Wait the start & the color
-while topics["main_start"] == 0 or topics["color"] == "null":
+# Wait the start & the team color
+while topics["main_start"] == 0 or topics["teamcolor"] == "null":
     # Do nothing
     continue
 
@@ -155,12 +155,12 @@ while True:
         """
 
         # IF BLUE
-        if  topics["color"] == "blue":
+        if  topics["teamcolor"] == "blue":
             print("Blue")
             #turnLeft(90)
 
         # IF GREEN
-        if  topics["color"] == "green":
+        if  topics["teamcolor"] == "green":
             print("Green")
             #turnRight(90)
 
