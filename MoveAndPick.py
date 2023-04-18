@@ -169,7 +169,7 @@ while True:
         # Relay with camera on Jetson
         flag_start_move = False
     else:
-        print("En automatique - Jetson")
+        # In automatic - Jetson
         print("main_move_straight: ", topics["main_move_straight"])
         print("main_move_turn: ", topics["main_move_turn"])
         if topics["main_move_straight"] > 0 :
