@@ -51,7 +51,14 @@ flag_start_move = True
     MQTT communication
 """
 # MQTT Topics
-topics = {"main_start" : 0, "color" : "null", "main_move_straight" : 0, "main_move_turn" : 0}
+topics = {"main_start" : 0, "color" : "null", "main_send_cameradata" : 0, "main_move_straight" : 0, "main_move_turn" : 0}
+"""
+main_start : 0 par défaut, 1 pour lancer # Aussi avec button
+color : null par défaut, blue or green pour choisir # Aussi avec button
+main_send_cameradata : 0 par défaut ou pour stop, 1 pour envoyer des données de déplacement caméra
+main_move_straight : INT donnée par la caméra pour avancer/reculer
+main_move_turn : INT donnée par la caméra pour tourner
+"""
 
 #=========================================================================================================#
 
