@@ -172,10 +172,10 @@ while True:
         # In automatic - Jetson
         print("main_move_straight: ", topics["main_move_straight"])
         print("main_move_turn: ", topics["main_move_turn"])
-        if topics["main_move_straight"] > 0 :
+        if float(topics["main_move_straight"]) > 0 :
             #goForward(topics["main_move_straight"])
             continue
-        elif topics["main_move_straight"] < 0 :
+        elif float(topics["main_move_straight"]) < 0 :
             #goBackward(topics["main_move_straight"])
             continue
         topics["main_move_straight"] = 0
