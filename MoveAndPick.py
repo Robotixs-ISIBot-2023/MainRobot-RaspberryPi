@@ -106,8 +106,8 @@ client.on_message = on_message
 
 # Wait the start & the color
 while topics["main_start"] == 0 or topics["color"] == "null":
-    print("Waiting the start & the color")
     # Do nothing
+    continue
 
 # When start :
 while True:
