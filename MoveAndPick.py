@@ -112,16 +112,16 @@ while topics["main_start"] == 0 or topics["teamcolor"] == "null":
 # When start :
 while True:
     if flag_start_move:
-        goForward(275) # Avancer à la première réserve d'étage gâteau
-        time.sleep(1.5)
+        #goForward(275) # Avancer à la première réserve d'étage gâteau
+        #time.sleep(1.5)
         # First sequence for cake here
         """
         ETAGE ROSE
         La séquence à effectuer pour faire des gâteaux (sans remplir tout le réservoir) :
         RIEN (tout stocker en 1 pile)
         """
-        goForward(200) # Avancer à la prochaine réserve d'étage gâteau
-        time.sleep(1.6)
+        #goForward(200) # Avancer à la prochaine réserve d'étage gâteau
+        #time.sleep(1.6)
         # Sequence for cake here
         """
         ETAGE JAUNE
@@ -155,6 +155,9 @@ while True:
         - fermer pince
         - monter pince
         """
+        # ABANDONE SEQUENCE
+        goForward(550)
+        time.sleep(4)
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -164,10 +167,10 @@ while True:
         # IF GREEN
         if  topics["teamcolor"] == "green":
             print("Green")
-            turnRight(90)
+            turnRight(95)
         time.sleep(1.5)
 
-        goForward(300)
+        goForward(400)
         time.sleep(2.5)
 
         # Relay with camera on Jetson
