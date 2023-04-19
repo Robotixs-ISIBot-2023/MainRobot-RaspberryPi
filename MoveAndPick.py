@@ -166,7 +166,7 @@ while True:
         # IF GREEN
         if  topics["teamcolor"] == "green":
             print("Green - Turn right")
-            turnRight(95)
+            turnRight(82)
         time.sleep(1.5)
 
         goForward(500)
@@ -179,7 +179,7 @@ while True:
         # IF GREEN
         if  topics["teamcolor"] == "green":
             print("Green - Turn left")
-            turnLeft(82)
+            turnLeft(95)
         time.sleep(1.5)
 
         goForward(1200)
