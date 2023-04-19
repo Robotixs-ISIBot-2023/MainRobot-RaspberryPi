@@ -210,10 +210,21 @@ while True:
         print("main_move_turn: ", topics["main_move_turn"])
         # If go forward
         if float(topics["main_move_straight"]) > 0 :
-            goForward(float(topics["main_move_straight"]))
+            goForward(float(topics["main_move_straight"])*10)
+            time.sleep(2)
         # If go backward
         elif float(topics["main_move_straight"]) < 0 :
-            goBackward(float(topics["main_move_straight"]))
+            goBackward(float(topics["main_move_straight"])*10)
+            time.sleep(2)
+
+        # If turn right
+        if float(topics["main_move_turn"]) > 0 :
+            turnRight(float(topics["main_move_turn"]))
+            time.sleep(2)
+        # If turn left
+        elif float(topics["main_move_turn"]) < 0 :
+            turnLeft(float(topics["main_move_turn"]))
+            time.sleep(2)
 
         # RESET VARIABLES
         publish("main_send_cameradata", 0)
