@@ -155,23 +155,50 @@ while True:
         - fermer pince
         - monter pince
         """
-        # ABANDONE SEQUENCE
-        goForward(550)
-        time.sleep(4)
+        # ABANDON SEQUENCE JUST GO and slide with the pucks 😏
+        goForward(600)
+        time.sleep(2)
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
-            print("Blue")
-            turnLeft(90)
-
+            print("Blue - Turn left")
+            turnLeft(95)
         # IF GREEN
         if  topics["teamcolor"] == "green":
-            print("Green")
+            print("Green - Turn right")
             turnRight(95)
         time.sleep(1.5)
 
-        goForward(400)
-        time.sleep(2.5)
+        goForward(500)
+        time.sleep(1.7)
+
+        # IF BLUE
+        if  topics["teamcolor"] == "blue":
+            print("Blue - Turn right")
+            turnRight(82)
+        # IF GREEN
+        if  topics["teamcolor"] == "green":
+            print("Green - Turn left")
+            turnLeft(82)
+        time.sleep(1.5)
+
+        goForward(1200)
+        time.sleep(3.5)
+
+        # IF BLUE
+        if  topics["teamcolor"] == "blue":
+            print("Blue - Turn right")
+            turnRight(90)
+        # IF GREEN
+        if  topics["teamcolor"] == "green":
+            print("Green - Turn left")
+            turnLeft(90)
+        time.sleep(1.5)
+
+        goForward(600)
+        time.sleep(2) # Drop pucks
+        goBackward(600) # Go back to be seen by the camera
+        time.sleep(2)
 
         # Relay with camera on Jetson
         flag_start_move = False
