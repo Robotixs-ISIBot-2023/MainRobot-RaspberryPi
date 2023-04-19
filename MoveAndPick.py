@@ -184,6 +184,7 @@ while True:
             continue
 
         # RESET VARIABLES
+        publish("main_send_cameradata", 0)
         publish("main_move_straight", 0)
         publish("main_move_turn", 0)
         topics["main_move_straight"] = 0
