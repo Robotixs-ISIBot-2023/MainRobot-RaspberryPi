@@ -15,7 +15,7 @@ Authors :
 
 #=========================================================================================================#
 
-#from Move.sendDataToTeensy import *
+from Move.sendDataToTeensy import *
 from Communication.publish import *
 
 import time
@@ -112,14 +112,14 @@ while topics["main_start"] == 0 or topics["teamcolor"] == "null":
 # When start :
 while True:
     if flag_start_move:
-        #goForward(275) # Avancer à la première réserve d'étage gâteau
+        goForward(275) # Avancer à la première réserve d'étage gâteau
         # First sequence for cake here
         """
         ETAGE ROSE
         La séquence à effectuer pour faire des gâteaux (sans remplir tout le réservoir) :
         RIEN (tout stocker en 1 pile)
         """
-        #goForward(200) # Avancer à la prochaine réserve d'étage gâteau
+        goForward(200) # Avancer à la prochaine réserve d'étage gâteau
         # Sequence for cake here
         """
         ETAGE JAUNE
@@ -157,14 +157,14 @@ while True:
         # IF BLUE
         if  topics["teamcolor"] == "blue":
             print("Blue")
-            #turnLeft(90)
+            turnLeft(90)
 
         # IF GREEN
         if  topics["teamcolor"] == "green":
             print("Green")
-            #turnRight(90)
+            turnRight(90)
 
-        #goForward(300)
+        goForward(300)
 
         # Relay with camera on Jetson
         flag_start_move = False
@@ -176,11 +176,11 @@ while True:
         print("main_move_turn: ", topics["main_move_turn"])
         # If go forward
         if float(topics["main_move_straight"]) > 0 :
-            #goForward(topics["main_move_straight"])
+            goForward(topics["main_move_straight"])
             continue
         # If go backward
         elif float(topics["main_move_straight"]) < 0 :
-            #goBackward(topics["main_move_straight"])
+            goBackward(topics["main_move_straight"])
             continue
 
         # RESET VARIABLES
