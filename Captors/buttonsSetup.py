@@ -10,10 +10,9 @@ if __name__ == '__main__':
     while True: # Run forever
         if GPIO.input(16) == GPIO.HIGH:
             if not(oldGreenButtonPush):
-                print("Button was pushed!")
+                print("GREEN Button was pushed!")
                 oldGreenButtonPush = True
-            #oldGreenButtonPush = True
         else:
             if oldGreenButtonPush:
-                print("Button was NOT pushed!")
+                print("GREEN Button was NOT pushed!")
                 oldGreenButtonPush = False
