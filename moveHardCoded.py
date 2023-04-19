@@ -23,5 +23,7 @@ goForward(1200)
 time.sleep(3.5)
 turnRight(90) # FOR BLUE
 time.sleep(1.5)
-goForward(500)
+goForward(600)
+time.sleep(2)
+goBackward(600)
 
