@@ -177,11 +177,9 @@ while True:
         # If go forward
         if float(topics["main_move_straight"]) > 0 :
             goForward(float(topics["main_move_straight"]))
-            continue
         # If go backward
         elif float(topics["main_move_straight"]) < 0 :
             goBackward(float(topics["main_move_straight"]))
-            continue
 
         # RESET VARIABLES
         publish("main_send_cameradata", 0)
@@ -189,5 +187,5 @@ while True:
         publish("main_move_turn", 0)
         topics["main_move_straight"] = 0
         topics["main_move_turn"] = 0
-        time.sleep(1)
+        time.sleep(10)
 
