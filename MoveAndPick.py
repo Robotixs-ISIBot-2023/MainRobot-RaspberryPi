@@ -176,11 +176,11 @@ while True:
         print("main_move_turn: ", topics["main_move_turn"])
         # If go forward
         if float(topics["main_move_straight"]) > 0 :
-            goForward(topics["main_move_straight"])
+            goForward(float(topics["main_move_straight"]))
             continue
         # If go backward
         elif float(topics["main_move_straight"]) < 0 :
-            goBackward(topics["main_move_straight"])
+            goBackward(float(topics["main_move_straight"]))
             continue
 
         # RESET VARIABLES
