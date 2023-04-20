@@ -11,9 +11,9 @@ Authors :
 
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 
-Pin_switch = 27
+Pin_switch = 13
 
 GPIO.setup(Pin_switch, GPIO.IN)
 
