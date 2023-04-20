@@ -1,3 +1,14 @@
+# -*- coding: utf-8 -*-
+"""
+ISIBot - Code for setup team colors buttons on the Main Robot
+
+Created on Apr 18 2023
+Last modification on Apr 18 2023
+
+Authors : 
+@AntoDB - Antonin De Breuck (BC informatique)
+"""
+
 import RPi.GPIO as GPIO # Import Raspberry Pi GPIO library
 
 Pin_Green_Btn = 16
