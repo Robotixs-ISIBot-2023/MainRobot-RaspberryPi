@@ -200,12 +200,12 @@ while True:
         if float(topics["main_move_straight"]) > 0 :
             goForward(float(topics["main_move_straight"])*10)
             print("Avance")
-            time.sleep(2)
+            time.sleep(4)
         # If go backward
         elif float(topics["main_move_straight"]) < 0 :
             goBackward(float(topics["main_move_straight"])*10)
             print("Recule")
-            time.sleep(2)
+            time.sleep(4)
 
         # If turn right
         if float(topics["main_move_turn"]) > 0 :
@@ -214,7 +214,7 @@ while True:
             else:
                 turnRight(float(topics["main_move_turn"]))
             print("Tourne à droite")
-            time.sleep(2)
+            time.sleep(4)
         # If turn left
         elif float(topics["main_move_turn"]) < 0 :
             if float(topics["main_move_turn"]) < -90 :
@@ -222,7 +222,7 @@ while True:
             else:
                 turnLeft(- float(topics["main_move_turn"]))
             print("Tourne à gauche")
-            time.sleep(2)
+            time.sleep(4)
 
         # RESET VARIABLES
         print("RESET VARIABLES & WAIT")
