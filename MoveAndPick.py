@@ -151,11 +151,11 @@ while True:
         # IF BLUE
         if  topics["teamcolor"] == "blue":
             print("Blue - Turn left")
-            turnLeft(95)
+            turnLeft(90)
         # IF GREEN
         if  topics["teamcolor"] == "green":
             print("Green - Turn right")
-            turnRight(82)
+            turnRight(90)
         time.sleep(1.5)
 
         goForward(500)
@@ -164,11 +164,11 @@ while True:
         # IF BLUE
         if  topics["teamcolor"] == "blue":
             print("Blue - Turn right")
-            turnRight(82)
+            turnRight(90)
         # IF GREEN
         if  topics["teamcolor"] == "green":
             print("Green - Turn left")
-            turnLeft(95)
+            turnLeft(90)
         time.sleep(1.5)
 
         goForward(1200)
@@ -205,25 +205,15 @@ while True:
 
         # If turn right
         if degrees > 0 :
-            if degrees > 90 :
-                turnRight(90)
-                time.sleep(2)
-                turnRight(degrees-90)
-                # If nothing is found
-                if degrees == 180 and distance == 0:
-                    tryCatchPuck += 1
-            else:
-                turnRight(degrees)
+            turnRight(degrees)
+            # If nothing is found
+            if degrees == 180 and distance == 0:
+                tryCatchPuck += 1
             print("Tourne à droite")
             time.sleep(4)
         # If turn left
         elif degrees < 0 :
-            if degrees < -90 :
-                turnLeft(90)
-                time.sleep(2)
-                turnRight(- degrees-90)
-            else:
-                turnLeft(- degrees)
+            turnLeft(- degrees)
             print("Tourne à gauche")
             time.sleep(4)
 
