@@ -17,7 +17,7 @@ Pin_switch = 27
 
 GPIO.setup(Pin_switch, GPIO.IN)
 
-old_button_state = 1
+old_button_state = 0
 
 if __name__ == '__main__':
     Pin_led = 4
@@ -29,9 +29,9 @@ if __name__ == '__main__':
         
         """ Pour utiliser le switch de depart en no"""
         
-        if buttonState == 0 and old_button_state == 1:  
+        if buttonState == 1 and old_button_state == 0:  
             GPIO.output(Pin_led,1)  #HIGH
             print("on")
             old_button_state = buttonState
             
-GPIO.cleanup()
+    GPIO.cleanup()
