@@ -35,6 +35,7 @@ import time
 #================================================== Don't touch ==================================================#
 
 flag_start_move = True
+tryCatchPuck = 0
 
 """
     MQTT communication
@@ -191,11 +192,15 @@ while True:
         # Relay with camera on Jetson
         flag_start_move = False
     else:
+        if topics["main_goToBase"] == False :
+            break
+
         # In automatic - Jetson
         publish("main_send_cameradata", 1) # Ask the Jetson to send data | CAUTION Wait until the robot stop moving
 
         print("main_move_straight: ", float(topics["main_move_straight"]))
         print("main_move_turn: ", float(topics["main_move_turn"]))
+
         # If go forward
         if float(topics["main_move_straight"]) > 0 :
             goForward(float(topics["main_move_straight"])*10)
@@ -211,6 +216,11 @@ while True:
         if float(topics["main_move_turn"]) > 0 :
             if float(topics["main_move_turn"]) > 90 :
                 turnRight(90)
+                time.sleep(2)
+                turnRight(float(topics["main_move_turn"])-90)
+                # If nothing is found
+                if int(topics["main_move_turn"]) == 180 and int(topics["main_move_straight"]) == 0:
+                    tryCatchPuck += 1
             else:
                 turnRight(float(topics["main_move_turn"]))
             print("Tourne à droite")
@@ -219,6 +229,8 @@ while True:
         elif float(topics["main_move_turn"]) < 0 :
             if float(topics["main_move_turn"]) < -90 :
                 turnLeft(90)
+                time.sleep(2)
+                turnRight(-float(topics["main_move_turn"])-90)
             else:
                 turnLeft(- float(topics["main_move_turn"]))
             print("Tourne à gauche")
@@ -229,7 +241,18 @@ while True:
         publish("main_send_cameradata", 0)
         publish("main_move_straight", 0)
         publish("main_move_turn", 0)
-        topics["main_move_straight"] = 0
-        topics["main_move_turn"] = 0
+
+        if tryCatchPuck >= 20:
+            print("Not found pucks 20 times so go to plate and bo back to base")
+            if topics["main_isfull"] == False :
+                publish("main_isfull", True)    # To go to the plate
+            else:
+                if topics["main_isfull2"] == False :
+                    publish("main_isfull2", True)   # To stand up straight for the plate
+                else:
+                    publish("main_isfull", False)
+                    publish("main_isfull2", False)
+                    publish("main_goToBase", True)   # To go to the base
+
         time.sleep(10)
 
