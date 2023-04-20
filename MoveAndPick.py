@@ -196,41 +196,41 @@ while True:
         # In automatic - Jetson
         publish("main_send_cameradata", 1) # Ask the Jetson to send data | CAUTION Wait until the robot stop moving
 
-        print("main_move_straight: ", float(topics["main_move_straight"]))
-        print("main_move_turn: ", float(topics["main_move_turn"]))
+        print("main_move_straight: ", int(topics["main_move_straight"]))
+        print("main_move_turn: ", int(topics["main_move_turn"]))
 
         # If turn right
-        if float(topics["main_move_turn"]) > 0 :
-            if float(topics["main_move_turn"]) > 90 :
+        if int(topics["main_move_turn"]) > 0 :
+            if int(topics["main_move_turn"]) > 90 :
                 turnRight(90)
                 time.sleep(2)
-                turnRight(float(topics["main_move_turn"])-90)
+                turnRight(int(topics["main_move_turn"])-90)
                 # If nothing is found
                 if int(topics["main_move_turn"]) == 180 and int(topics["main_move_straight"]) == 0:
                     tryCatchPuck += 1
             else:
-                turnRight(float(topics["main_move_turn"]))
+                turnRight(int(topics["main_move_turn"]))
             print("Tourne à droite")
             time.sleep(4)
         # If turn left
-        elif float(topics["main_move_turn"]) < 0 :
-            if float(topics["main_move_turn"]) < -90 :
+        elif int(topics["main_move_turn"]) < 0 :
+            if int(topics["main_move_turn"]) < -90 :
                 turnLeft(90)
                 time.sleep(2)
-                turnRight(- float(topics["main_move_turn"])-90)
+                turnRight(- int(topics["main_move_turn"])-90)
             else:
-                turnLeft(- float(topics["main_move_turn"]))
+                turnLeft(- int(topics["main_move_turn"]))
             print("Tourne à gauche")
             time.sleep(4)
 
         # If go forward
-        if float(topics["main_move_straight"]) > 0 :
-            goForward(float(topics["main_move_straight"])*10)
+        if int(topics["main_move_straight"]) > 0 :
+            goForward(int(topics["main_move_straight"])*10)
             print("Avance")
             time.sleep(4)
         # If go backward
-        elif float(topics["main_move_straight"]) < 0 :
-            goBackward((-float(topics["main_move_straight"]))*10)
+        elif int(topics["main_move_straight"]) < 0 :
+            goBackward((-int(topics["main_move_straight"]))*10)
             print("Recule")
             time.sleep(4)
 
