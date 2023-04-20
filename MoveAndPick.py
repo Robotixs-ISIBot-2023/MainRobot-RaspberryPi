@@ -145,6 +145,7 @@ while topics["main_start"] == 0 or topics["teamcolor"] == "null":
 # When start :
 while True:
     if flag_start_move:
+        start = time.time() # Start calculating time
         publish("main_points", points)
         # CLOSE the servo motor at the back of the robot
 
@@ -214,8 +215,8 @@ while True:
         degrees = int(float(topics["main_move_turn"]))
         distance = int(float(topics["main_move_straight"]))*10
 
-        print("main_move_turn: ", degrees)
-        print("main_move_straight: ", distance)
+        print("main_move_turn: ", degrees + "°")
+        print("main_move_straight: ", distance + " mm")
 
         # If turn right
         if degrees > 0 :
@@ -251,6 +252,7 @@ while True:
         if topics["main_goToBase"] == True :
             points += 15
             publish("main_points", points)
+            publish("main_finish", True) # Annimation with ESP32
             break
         
         """
@@ -291,3 +293,8 @@ while True:
 
         time.sleep(2)
 
+        done = time.time()
+        elapsed = done - start
+        print("Time since start: " + str(elapsed) + " s")
+        if elapsed >= 90 :
+            tryCatchPuck = 20 # Same as not found pucks 20 times -> EMPTY MAIN ROBOT + GO BASE
