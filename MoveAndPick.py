@@ -17,6 +17,7 @@ Authors :
 
 from Move.sendDataToTeensy import *
 from Communication.publish import *
+from Captors.buttonsSetup import *
 
 import time
 
@@ -106,8 +107,26 @@ client.on_message = on_message
 
 # Wait the start & the team color
 while topics["main_start"] == 0 or topics["teamcolor"] == "null":
-    # Do nothing
-    continue
+    # Do nothing & wait the button teamcolor push & start
+    if GPIO.input(Pin_Green_Btn) == GPIO.HIGH:
+        if not(oldGreenButtonPush):
+            print("GREEN Button was pushed!")
+            publish("teamcolor", "green") # Send to MQTT for rasp on main robot & jetson
+            oldGreenButtonPush = True
+    else:
+        if oldGreenButtonPush:
+            print("GREEN Button was NOT pushed!")
+            oldGreenButtonPush = False
+    
+    if GPIO.input(Pin_Blue_Btn) == GPIO.HIGH:
+        if not(oldBlueButtonPush):
+            print("BLUE Button was pushed!")
+            publish("teamcolor", "blue") # Send to MQTT for rasp on main robot & jetson
+            oldBlueButtonPush = True
+    else:
+        if oldBlueButtonPush:
+            print("BLUE Button was NOT pushed!")
+            oldBlueButtonPush = False
 
 # When start :
 while True:
