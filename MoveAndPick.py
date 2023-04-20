@@ -18,6 +18,7 @@ Authors :
 from Move.sendDataToTeensy import *
 from Communication.publish import *
 from Captors.buttonsSetup import *
+from Captors.gpio_start_setup import *
 
 import time
 
@@ -127,6 +128,15 @@ while topics["main_start"] == 0 or topics["teamcolor"] == "null":
         if oldBlueButtonPush:
             print("BLUE Button was NOT pushed!")
             oldBlueButtonPush = False
+
+    buttonState = GPIO.input(Pin_switch)
+
+    """ Pour utiliser le switch de depart en no"""
+    
+    if buttonState == 1 and old_button_state == 0:  
+        print("GOOOOO !")
+        publish("main_start", 1) # Send to MQTT the start
+        old_button_state = buttonState
 
 # When start :
 while True:
