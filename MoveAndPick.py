@@ -15,6 +15,9 @@ Authors :
 
 #=========================================================================================================#
 
+import RPi.GPIO as GPIO
+GPIO.cleanup()
+
 from Move.sendDataToTeensy import *
 from Communication.publish import *
 from Captors.buttonsSetup import *
@@ -30,7 +33,7 @@ import time
             
 #================================================== Parameters ==================================================#
 
-# NOTHING HERE FOR THE MOMEMENT
+points = 0
 
 #================================================== Don't touch ==================================================#
 
@@ -41,7 +44,7 @@ tryCatchPuck = 0
     MQTT communication
 """
 # MQTT Topics
-topics = {"main_start" : 0, "teamcolor" : "null", "main_send_cameradata" : 0, "main_move_straight" : 0, "main_move_turn" : 0, "main_goToBase" : False}
+topics = {"main_start" : 0, "teamcolor" : "null", "main_send_cameradata" : 0, "main_move_straight" : 0, "main_move_turn" : 0, "main_goToBase" : False, "main_points" : points}
 """
 main_start : 0 par défaut, 1 pour lancer # Aussi avec button
 teamcolor : null par défaut, blue or green pour choisir # Aussi avec button
@@ -142,7 +145,8 @@ while topics["main_start"] == 0 or topics["teamcolor"] == "null":
 # When start :
 while True:
     if flag_start_move:
-        GPIO.cleanup()
+        publish("main_points", points)
+        # CLOSE the servo motor at the back of the robot
 
         # ABANDON SEQUENCE JUST GO and slide with the pucks 😏
         goForward(600)
@@ -172,7 +176,7 @@ while True:
         time.sleep(1.5)
 
         goForward(1200)
-        time.sleep(3.5)
+        time.sleep(3.5) # A test avec 3 s
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -186,6 +190,16 @@ while True:
 
         goForward(600)
         time.sleep(2) # Drop pucks
+
+        #turnRight(180) # turn 180° to drop puck backwards and put ball on top
+        #time.sleep(2)
+        
+        # OPEN the servo motor at the back of the robot
+        points += 9
+        publish("main_points", points)
+
+        #goForward(600) # Go back (Forward due to the turn 180° in the plate) to be seen by the camera
+        # CLOSE the servo motor at the back of the robot
         goBackward(600) # Go back to be seen by the camera
         time.sleep(2)
 
@@ -235,7 +249,30 @@ while True:
         publish("main_move_turn", 0)
 
         if topics["main_goToBase"] == True :
+            points += 15
+            publish("main_points", points)
             break
+        
+        """
+        if CONDITION HERE : # If detect it's full
+            publish("main_isfull", True)    # To go to the plate
+        if topics["main_isfull"] == True and topics["main_isfull2"] == False :
+            publish("main_isfull2", True)   # To stand up straight for the plate
+        if topics["main_isfull"] == True and topics["main_isfull2"] == True :
+            turnRight(180)   # turn 180° to drop puck backwards and put ball on top
+            time.sleep(2)
+            # OPEN the servo motor at the back of the robot
+            # Put ball on top
+            goForward(600) # Move forward to be catching by the Jetson with camera
+            time.sleep(2)
+            # CLOSE the servo motor at the back of the robot
+            # RESET VARIABLES
+            publish("main_isfull", False)
+            publish("main_isfull2", False)
+            # ADD POINTS
+            points += 3
+            publish("main_points", points)
+        """
 
         if tryCatchPuck >= 20:
             print("Not found pucks 20 times so go to plate and bo back to base")
