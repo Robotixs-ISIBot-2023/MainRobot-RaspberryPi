@@ -34,4 +34,4 @@ if __name__ == '__main__':
             print("on")
             old_button_state = buttonState
             
-GPIO.cleanup()
+    GPIO.cleanup()
