@@ -3,7 +3,7 @@
 ISIBot - Main code for the Main Robot
 
 Created on Mar 29 2023
-Last modification on Mar 29 2023
+Last modification on Apr 18 2023
 
 Authors : 
 @AntoDB - Antonin De Breuck (BC informatique)
@@ -235,27 +235,32 @@ while True:
         # In automatic - Jetson
         publish("main_send_cameradata", 1) # Ask the Jetson to send data | CAUTION Wait until the robot stop moving
 
-        print("main_move_straight: ", topics["main_move_straight"])
-        print("main_move_turn: ", topics["main_move_turn"])
+        print("main_move_straight: ", float(topics["main_move_straight"]))
+        print("main_move_turn: ", float(topics["main_move_turn"]))
         # If go forward
         if float(topics["main_move_straight"]) > 0 :
             goForward(float(topics["main_move_straight"])*10)
+            print("Avance")
             time.sleep(2)
         # If go backward
         elif float(topics["main_move_straight"]) < 0 :
             goBackward(float(topics["main_move_straight"])*10)
+            print("Recule")
             time.sleep(2)
 
         # If turn right
         if float(topics["main_move_turn"]) > 0 :
             turnRight(float(topics["main_move_turn"]))
+            print("Tourne à droite")
             time.sleep(2)
         # If turn left
         elif float(topics["main_move_turn"]) < 0 :
             turnLeft(float(topics["main_move_turn"]))
+            print("Tourne à gauche")
             time.sleep(2)
 
         # RESET VARIABLES
+        print("RESET VARIABLES & WAIT")
         publish("main_send_cameradata", 0)
         publish("main_move_straight", 0)
         publish("main_move_turn", 0)
