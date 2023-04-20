@@ -13,11 +13,11 @@ goForward(300)
 # Changement juste prendre palet (Plus de stop pour séquence)
 goForward(600)
 time.sleep(2)
-turnLeft(95) # FOR BLUE
+turnLeft(90) # FOR BLUE
 time.sleep(1.5)
 goForward(500)
 time.sleep(1.7)
-turnRight(82) # FOR BLUE
+turnRight(90) # FOR BLUE
 time.sleep(1.5)
 goForward(1200)
 time.sleep(3.5)
@@ -27,3 +27,4 @@ goForward(600)
 time.sleep(2)
 goBackward(600)
 
+turnRight(180) # FOR test
