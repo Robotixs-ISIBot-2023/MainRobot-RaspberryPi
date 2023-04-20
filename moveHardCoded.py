@@ -27,4 +27,5 @@ goForward(600)
 time.sleep(2)
 goBackward(600)
 
+time.sleep(2)
 turnRight(180) # FOR test
