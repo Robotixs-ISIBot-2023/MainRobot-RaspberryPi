@@ -141,6 +141,7 @@ while topics["main_start"] == 0 or topics["teamcolor"] == "null":
 # When start :
 while True:
     if flag_start_move:
+        GPIO.cleanup()
         #goForward(275) # Avancer à la première réserve d'étage gâteau
         #time.sleep(1.5)
         # First sequence for cake here
