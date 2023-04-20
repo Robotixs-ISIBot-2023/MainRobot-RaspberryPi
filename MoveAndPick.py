@@ -142,49 +142,7 @@ while topics["main_start"] == 0 or topics["teamcolor"] == "null":
 while True:
     if flag_start_move:
         GPIO.cleanup()
-        #goForward(275) # Avancer à la première réserve d'étage gâteau
-        #time.sleep(1.5)
-        # First sequence for cake here
-        """
-        ETAGE ROSE
-        La séquence à effectuer pour faire des gâteaux (sans remplir tout le réservoir) :
-        RIEN (tout stocker en 1 pile)
-        """
-        #goForward(200) # Avancer à la prochaine réserve d'étage gâteau
-        #time.sleep(1.6)
-        # Sequence for cake here
-        """
-        ETAGE JAUNE
-        La séquence à effectuer pour faire des gâteaux :
-        - pince niveau moyen
-        - ouvrir pince
-        - monter pince
-        - avancer d'un gâteau
-        - pince niveau bas
-        - fermer pince
-        - monter pince
-        - reculer de 2 gâteau (pour prendre l'étage rose)
-        - pince niveau haut
-        - ouvrir pince
-        - monter pince
-        - avancer 2 gâteaux
-        - pince niveau haut
-        - fermer pince
-        - monter pince
-        - reculer 2 gâteaux (pour prendre l'étage rose 2)
-        - pince niveau moyen
-        - ouvrir pince
-        - monter pince
-        - avancer d'un gâteau
-        - pince niveau moyen
-        - fermer pince
-        - pince niveau bas
-        - ouvrir pince
-        - pince niveau milieu (un peu plus haut)
-        - reculer d'un gâteau
-        - fermer pince
-        - monter pince
-        """
+
         # ABANDON SEQUENCE JUST GO and slide with the pucks 😏
         goForward(600)
         time.sleep(2)
@@ -251,12 +209,18 @@ while True:
 
         # If turn right
         if float(topics["main_move_turn"]) > 0 :
-            turnRight(float(topics["main_move_turn"]))
+            if float(topics["main_move_turn"]) > 90 :
+                turnRight(90)
+            else:
+                turnRight(float(topics["main_move_turn"]))
             print("Tourne à droite")
             time.sleep(2)
         # If turn left
         elif float(topics["main_move_turn"]) < 0 :
-            turnLeft(float(topics["main_move_turn"]))
+            if float(topics["main_move_turn"]) < -90 :
+                turnLeft(90)
+            else:
+                turnLeft(- float(topics["main_move_turn"]))
             print("Tourne à gauche")
             time.sleep(2)
 
