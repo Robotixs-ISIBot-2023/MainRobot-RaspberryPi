@@ -192,8 +192,6 @@ while True:
         # Relay with camera on Jetson
         flag_start_move = False
     else:
-        if topics["main_goToBase"] == False :
-            break
 
         # In automatic - Jetson
         publish("main_send_cameradata", 1) # Ask the Jetson to send data | CAUTION Wait until the robot stop moving
@@ -219,7 +217,7 @@ while True:
             if float(topics["main_move_turn"]) < -90 :
                 turnLeft(90)
                 time.sleep(2)
-                turnRight(-float(topics["main_move_turn"])-90)
+                turnRight(- float(topics["main_move_turn"])-90)
             else:
                 turnLeft(- float(topics["main_move_turn"]))
             print("Tourne à gauche")
@@ -232,7 +230,7 @@ while True:
             time.sleep(4)
         # If go backward
         elif float(topics["main_move_straight"]) < 0 :
-            goBackward(float(topics["main_move_straight"])*10)
+            goBackward((-float(topics["main_move_straight"]))*10)
             print("Recule")
             time.sleep(4)
 
@@ -242,6 +240,9 @@ while True:
         publish("main_move_straight", 0)
         publish("main_move_turn", 0)
 
+        if topics["main_goToBase"] == True :
+            break
+
         if tryCatchPuck >= 20:
             print("Not found pucks 20 times so go to plate and bo back to base")
             if topics["main_isfull"] == False :
@@ -250,6 +251,9 @@ while True:
                 if topics["main_isfull2"] == False :
                     publish("main_isfull2", True)   # To stand up straight for the plate
                 else:
+                    goBackward(600)
+                    time.sleep(2)
+
                     publish("main_isfull", False)
                     publish("main_isfull2", False)
                     publish("main_goToBase", True)   # To go to the base
