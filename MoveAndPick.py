@@ -245,6 +245,11 @@ while True:
             time.sleep(4)
 
         if topics["main_goToBase"] == True :
+            print("")
+            print("")
+            print("  FINISH")
+            print("")
+            print("")
             points += 15
             publish("main_points", points)
             publish("main_finish", True) # Annimation with ESP32
