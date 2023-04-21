@@ -244,12 +244,6 @@ while True:
             print("Recule")
             time.sleep(4)
 
-        # RESET VARIABLES
-        print("RESET VARIABLES & WAIT")
-        publish("main_send_cameradata", 0)
-        publish("main_move_straight", 0)
-        publish("main_move_turn", 0)
-
         if topics["main_goToBase"] == True :
             points += 15
             publish("main_points", points)
@@ -276,6 +270,12 @@ while True:
             points += 3
             publish("main_points", points)
         """
+        
+        done = time.time()
+        elapsed = done - start
+        print("Time since start: " + str(elapsed) + " s")
+        if elapsed >= 90 :
+            tryCatchPuck = 20 # Same as not found pucks 20 times -> EMPTY MAIN ROBOT + GO BASE
 
         if tryCatchPuck >= 20:
             print("Not found pucks 20 times so go to plate and bo back to base")
@@ -292,10 +292,10 @@ while True:
                     publish("main_isfull2", False)
                     publish("main_goToBase", True)   # To go to the base
 
-        time.sleep(2)
+        # RESET VARIABLES
+        print("RESET VARIABLES & WAIT")
+        publish("main_send_cameradata", 0)
+        publish("main_move_straight", 0)
+        publish("main_move_turn", 0)
 
-        done = time.time()
-        elapsed = done - start
-        print("Time since start: " + str(elapsed) + " s")
-        if elapsed >= 90 :
-            tryCatchPuck = 20 # Same as not found pucks 20 times -> EMPTY MAIN ROBOT + GO BASE
+        time.sleep(2)
