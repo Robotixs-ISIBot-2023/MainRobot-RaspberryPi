@@ -44,7 +44,7 @@ tryCatchPuck = 0
     MQTT communication
 """
 # MQTT Topics
-topics = {"main_start" : 0, "teamcolor" : "null", "main_send_cameradata" : 0, "main_move_straight" : 0, "main_move_turn" : 0, "main_goToBase" : False, "main_points" : points}
+topics = {"main_start" : 0, "teamcolor" : "null", "main_send_cameradata" : 0, "main_move_straight" : 0, "main_move_turn" : 0, "main_isfull" : False, "main_isfull2" : False,  "main_goToBase" : False, "main_points" : points}
 """
 main_start : 0 par défaut, 1 pour lancer # Aussi avec button
 teamcolor : null par défaut, blue or green pour choisir # Aussi avec button
