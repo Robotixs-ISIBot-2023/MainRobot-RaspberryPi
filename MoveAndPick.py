@@ -210,7 +210,7 @@ while True:
 
         # In automatic - Jetson
         publish("main_send_cameradata", 1) # Ask the Jetson to send data | CAUTION Wait until the robot stop moving
-        time.sleep(1)
+        time.sleep(3.5)
         
         degrees = int(float(topics["main_move_turn"]))
         distance = int(float(topics["main_move_straight"]))*10
