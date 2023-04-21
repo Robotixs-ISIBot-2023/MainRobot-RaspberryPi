@@ -190,18 +190,18 @@ while True:
         time.sleep(1.5)
 
         goForward(600)
-        time.sleep(2) # Drop pucks
+        time.sleep(3) # Drop pucks
 
-        #turnRight(180) # turn 180° to drop puck backwards and put ball on top
-        #time.sleep(2)
+        turnRight(170) # turn 180° to drop puck backwards and put ball on top
+        time.sleep(2)
         
         # OPEN the servo motor at the back of the robot
         points += 9
         publish("main_points", points)
 
-        #goForward(600) # Go back (Forward due to the turn 180° in the plate) to be seen by the camera
+        goForward(600) # Go back (Forward due to the turn 180° in the plate) to be seen by the camera
         # CLOSE the servo motor at the back of the robot
-        goBackward(600) # Go back to be seen by the camera
+        #goBackward(600) # Go back to be seen by the camera
         time.sleep(2)
 
         # Relay with camera on Jetson
@@ -245,6 +245,7 @@ while True:
             time.sleep(4)
 
         print("GO TO BASE ??? " + str(topics["main_goToBase"]))
+        print(type(topics["main_goToBase"]))
         if topics["main_goToBase"] == True :
             print("")
             print("")
