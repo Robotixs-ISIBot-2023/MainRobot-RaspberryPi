@@ -274,11 +274,11 @@ while True:
         done = time.time()
         elapsed = done - start
         print("Time since start: " + str(elapsed) + " s")
-        if elapsed >= 90 :
+        if elapsed >= 80 :
             tryCatchPuck = 20 # Same as not found pucks 20 times -> EMPTY MAIN ROBOT + GO BASE
 
         if tryCatchPuck >= 20:
-            print("Not found pucks 20 times so go to plate and bo back to base")
+            print("Not found pucks 20 times so go to plate and go back to base")
             if topics["main_isfull"] == False :
                 publish("main_isfull", True)    # To go to the plate
             else:
@@ -298,4 +298,4 @@ while True:
         publish("main_move_straight", 0)
         publish("main_move_turn", 0)
 
-        time.sleep(2)
+        #time.sleep(2)
