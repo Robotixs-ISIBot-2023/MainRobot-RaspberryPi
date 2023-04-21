@@ -234,9 +234,10 @@ while True:
 
         # If go forward
         if distance > 0 :
-            goForward(distance)
-            print("Avance")
-            time.sleep(4)
+            if distance != 6000:
+                goForward(distance)
+                print("Avance")
+                time.sleep(4)
         # If go backward
         elif distance < 0 :
             goBackward(- distance)
