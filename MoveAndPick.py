@@ -200,7 +200,7 @@ while True:
         # IF GREEN
         if  topics["teamcolor"] == "green":
             print("Green - Turn left back")
-            turnLeft(160)
+            turnLeft(150)
         time.sleep(4)
         
         # OPEN the servo motor at the back of the robot
