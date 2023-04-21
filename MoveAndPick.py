@@ -253,7 +253,8 @@ while True:
 
         print("GO TO BASE ??? " + str(topics["main_goToBase"]))
         print(type(topics["main_goToBase"]))
-        if bool(topics["main_goToBase"]) == True :
+        topics["main_goToBase"] = bool(topics["main_goToBase"])
+        if topics["main_goToBase"] == True :
             print("")
             print("")
             print("  FINISH")
