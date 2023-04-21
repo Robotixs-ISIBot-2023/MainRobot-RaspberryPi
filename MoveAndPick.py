@@ -192,7 +192,7 @@ while True:
         goForward(600)
         time.sleep(3) # Drop pucks
 
-        turnRight(170) # turn 180° to drop puck backwards and put ball on top
+        turnRight(160) # turn 180° to drop puck backwards and put ball on top
         time.sleep(2)
         
         # OPEN the servo motor at the back of the robot
