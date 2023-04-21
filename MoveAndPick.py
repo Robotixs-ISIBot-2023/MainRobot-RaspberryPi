@@ -215,8 +215,8 @@ while True:
         degrees = int(float(topics["main_move_turn"]))
         distance = int(float(topics["main_move_straight"]))*10
 
-        print("main_move_turn: ", degrees + "°")
-        print("main_move_straight: ", distance + " mm")
+        print("main_move_turn: " + str(degrees) + "°")
+        print("main_move_straight: " + str(distance) + " mm")
 
         # If turn right
         if degrees > 0 :
@@ -284,7 +284,7 @@ while True:
                 if topics["main_isfull2"] == False :
                     publish("main_isfull2", True)   # To stand up straight for the plate
                 else:
-                    goBackward(600)
+                    goBackward(600) # Back off the plate and avoid hitting all the cakes between the plate and the base
                     time.sleep(2)
 
                     publish("main_isfull", False)
