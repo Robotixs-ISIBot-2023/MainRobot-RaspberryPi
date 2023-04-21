@@ -151,7 +151,7 @@ while True:
 
         # ABANDON SEQUENCE JUST GO and slide with the pucks 😏
         goForward(600)
-        time.sleep(2)
+        time.sleep(4)
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -161,10 +161,10 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn right")
             turnRight(90)
-        time.sleep(1.5)
+        time.sleep(3)
 
         goForward(500)
-        time.sleep(1.7)
+        time.sleep(3)
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -174,10 +174,10 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn left")
             turnLeft(90)
-        time.sleep(1.5)
+        time.sleep(3)
 
         goForward(1200)
-        time.sleep(4.5) # A test avec 3 s
+        time.sleep(6) # A test avec 3 s
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -187,10 +187,10 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn left")
             turnLeft(90)
-        time.sleep(1.5)
+        time.sleep(3)
 
         goForward(600)
-        time.sleep(3) # Drop pucks
+        time.sleep(6) # Drop pucks
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -200,7 +200,7 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn left back")
             turnLeft(160)
-        time.sleep(2)
+        time.sleep(4)
         
         # OPEN the servo motor at the back of the robot
         points += 9
@@ -209,7 +209,7 @@ while True:
         goForward(600) # Go back (Forward due to the turn 180° in the plate) to be seen by the camera
         # CLOSE the servo motor at the back of the robot
         #goBackward(600) # Go back to be seen by the camera
-        time.sleep(2)
+        time.sleep(4)
 
         # Relay with camera on Jetson
         flag_start_move = False
