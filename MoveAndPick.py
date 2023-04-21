@@ -244,6 +244,7 @@ while True:
             print("Recule")
             time.sleep(4)
 
+        print("GO TO BASE ??? " + str(topics["main_goToBase"]))
         if topics["main_goToBase"] == True :
             print("")
             print("")
@@ -282,14 +283,14 @@ while True:
         if elapsed >= 80 :
             tryCatchPuck = 20 # Same as not found pucks 20 times -> EMPTY MAIN ROBOT + GO BASE
 
-        if tryCatchPuck >= 20:
+        if tryCatchPuck >= 20 and topics["main_goToBase"] == False:
             print("Not found pucks 20 times so go to plate and go back to base")
             if topics["main_isfull"] == False :
                 publish("main_isfull", True)    # To go to the plate
             else:
                 if topics["main_isfull2"] == False :
                     publish("main_isfull2", True)   # To stand up straight for the plate
-                elif topics["main_goToBase"] == False:
+                else:
                     goBackward(600) # Back off the plate and avoid hitting all the cakes between the plate and the base
                     time.sleep(2)
 
