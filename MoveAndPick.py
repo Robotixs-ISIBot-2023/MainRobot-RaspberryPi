@@ -289,7 +289,7 @@ while True:
             else:
                 if topics["main_isfull2"] == False :
                     publish("main_isfull2", True)   # To stand up straight for the plate
-                else:
+                elif topics["main_goToBase"] == False:
                     goBackward(600) # Back off the plate and avoid hitting all the cakes between the plate and the base
                     time.sleep(2)
 
