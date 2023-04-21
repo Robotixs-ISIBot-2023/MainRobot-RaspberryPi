@@ -39,6 +39,7 @@ points = 0
 
 flag_start_move = True
 tryCatchPuck = 0
+nbrCatchPuck = 0
 
 """
     MQTT communication
@@ -189,8 +190,8 @@ while True:
             turnLeft(90)
         time.sleep(3)
 
-        goForward(600)
-        time.sleep(6) # Drop pucks
+        goForward(500)
+        time.sleep(8) # Drop pucks
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -250,9 +251,10 @@ while True:
             goBackward(- distance)
             print("Recule")
             time.sleep(4)
+        nbrCatchPuck += 1
 
-        print("GO TO BASE ??? " + str(topics["main_goToBase"]))
-        print(type(topics["main_goToBase"]))
+        #print("GO TO BASE ??? " + str(topics["main_goToBase"]))
+        #print(type(topics["main_goToBase"]))
         topics["main_goToBase"] = bool(topics["main_goToBase"])
         if topics["main_goToBase"] == True :
             points += 15
@@ -267,8 +269,10 @@ while True:
             print("")
             break
         
+        print("Nbr palets : " + str(nbrCatchPuck))
+        print("IS FULL ? " + str(nbrCatchPuck > 0 and nbrCatchPuck % 3 == 0))
         """
-        if CONDITION HERE : # If detect it's full
+        if nbrCatchPuck > 0 and nbrCatchPuck % 3 == 0 : # If detect it's full
             publish("main_isfull", True)    # To go to the plate
         if topics["main_isfull"] == True and topics["main_isfull2"] == False :
             publish("main_isfull2", True)   # To stand up straight for the plate
