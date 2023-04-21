@@ -177,7 +177,7 @@ while True:
         time.sleep(1.5)
 
         goForward(1200)
-        time.sleep(3.5) # A test avec 3 s
+        time.sleep(4.5) # A test avec 3 s
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -192,7 +192,14 @@ while True:
         goForward(600)
         time.sleep(3) # Drop pucks
 
-        turnRight(160) # turn 180° to drop puck backwards and put ball on top
+        # IF BLUE
+        if  topics["teamcolor"] == "blue":
+            print("Blue - Turn right back")
+            turnRight(160) # turn 180° to drop puck backwards and put ball on top
+        # IF GREEN
+        if  topics["teamcolor"] == "green":
+            print("Green - Turn left back")
+            turnLeft(160)
         time.sleep(2)
         
         # OPEN the servo motor at the back of the robot
@@ -286,6 +293,8 @@ while True:
 
         if tryCatchPuck >= 20 and topics["main_goToBase"] == False:
             print("Not found pucks 20 times so go to plate and go back to base")
+            publish("main_goToBase", True)   # To go to the base
+            """
             if topics["main_isfull"] == False :
                 publish("main_isfull", True)    # To go to the plate
             else:
@@ -298,6 +307,7 @@ while True:
                     publish("main_isfull", False)
                     publish("main_isfull2", False)
                     publish("main_goToBase", True)   # To go to the base
+            """
 
         # RESET VARIABLES
         print("RESET VARIABLES & WAIT")
