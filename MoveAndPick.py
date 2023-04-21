@@ -137,7 +137,7 @@ while topics["main_start"] == 0 or topics["teamcolor"] == "null":
 
     """ Pour utiliser le switch de depart en no"""
     
-    if buttonState == 1 and old_button_state == 0:  
+    if buttonState == 1 and old_button_state == 0 and topics["teamcolor"] != "null" :  
         print("GOOOOO !")
         publish("main_start", 1) # Send to MQTT the start
         old_button_state = buttonState
