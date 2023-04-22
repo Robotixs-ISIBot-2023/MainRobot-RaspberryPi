@@ -251,6 +251,10 @@ while True:
             # If nothing is found
             if degrees == 180 and distance == 0:
                 tryCatchPuck += 1
+            else:
+                topics["main_goToBase"] = bool(topics["main_goToBase"])
+                if topics["main_goToBase"] == True :
+                    points += 15 # Theoricaly go to base
             print("Tourne à droite")
             time.sleep(4)
         # If turn left
@@ -276,8 +280,7 @@ while True:
         #print(type(topics["main_goToBase"]))
         topics["main_goToBase"] = bool(topics["main_goToBase"])
         if topics["main_goToBase"] == True :
-            points += 15
-            points += 5
+            points += 5 # Funny action
             publish("main_points", points)
             publish("main_finish", True) # Annimation with ESP32
 
@@ -319,7 +322,7 @@ while True:
             tryCatchPuck = 20 # Same as not found pucks 20 times -> EMPTY MAIN ROBOT + GO BASE
         
         if elapsed >= 95 :
-            tryCatchPuck = 20 # Same as not found pucks 20 times -> EMPTY MAIN ROBOT + GO BASE
+            # Just END game
             publish("main_points", points)
             publish("main_finish", True) # Annimation with ESP32
 
