@@ -26,10 +26,10 @@ import paho.mqtt.client as mqtt
 #================================================== Parameters ==================================================#
 
 # MQTT broker address
-#broker_address = "172.30.16.17" # Jetson IP (because the MQTT broker is in the Jetson)
+broker_address = "192.168.0.150" # Jetson IP (because the MQTT broker is in the Jetson) FORCED BY WIFI : D-Link DIR-605L (wifi AntoDB take on place)
 #broker_address = "192.168.0.102" # Jetson wifi IP (because the MQTT broker is in the Jetson)
 #broker_address = "192.168.0.228" # RbP 4 IP
-broker_address = str(input("Entrez l'IP de la Jetson : "))
+#broker_address = str(input("Entrez l'IP de la Jetson : "))
 
 # Create a client instance
 client = mqtt.Client()
