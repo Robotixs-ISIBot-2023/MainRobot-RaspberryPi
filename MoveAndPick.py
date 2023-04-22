@@ -275,6 +275,7 @@ while True:
         topics["main_goToBase"] = bool(topics["main_goToBase"])
         if topics["main_goToBase"] == True :
             points += 15
+            points += 5
             publish("main_points", points)
             publish("main_finish", True) # Annimation with ESP32
 
