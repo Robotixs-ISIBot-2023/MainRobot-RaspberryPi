@@ -150,6 +150,7 @@ while topics["main_start"] == 0 or topics["teamcolor"] == "null":
 # When start :
 while True:
     if flag_start_move:
+        points += 5
         start = time.time() # Start calculating time
         publish("main_points", points)
         # CLOSE the servo motor at the back of the robot
@@ -182,7 +183,7 @@ while True:
         time.sleep(4)
 
         goForward(1100)
-        time.sleep(6) # A test avec 3 s
+        time.sleep(5) # A test avec 3 s
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -195,7 +196,7 @@ while True:
         time.sleep(3)
 
         goForward(500)
-        time.sleep(8) # Drop pucks
+        time.sleep(4) # Drop pucks
         """
         # IF BLUE
         if  topics["teamcolor"] == "blue":
