@@ -234,13 +234,37 @@ while True:
         # Relay with camera on Jetson
         flag_start_move = False
     else:
-
         # In automatic - Jetson
+
         publish("main_send_cameradata", 1) # Ask the Jetson to send data | CAUTION Wait until the robot stop moving
         time.sleep(3.5)
         
         degrees = int(float(topics["main_move_turn"]))
         distance = int(float(topics["main_move_straight"]))*10
+
+        """
+        if degrees == 180 and distance == 0:
+            tryCatchPuck += 1
+            print("TAG robot not found")
+            turnRight(degrees)
+            while degrees == 180 and distance == 0 and tryCatchPuck >= 10 and tryCatchPuck < 21:
+                publish("main_send_cameradata", 1) # Ask the Jetson to send data | CAUTION Wait until the robot stop moving
+                time.sleep(3.5)
+
+                degrees = int(float(topics["main_move_turn"]))
+                distance = int(float(topics["main_move_straight"]))*10
+                tryCatchPuck += 1
+                print("TAG robot not found")
+            while degrees == 180 and distance == 0 and tryCatchPuck < 11:
+                publish("main_send_cameradata", 1) # Ask the Jetson to send data | CAUTION Wait until the robot stop moving
+                time.sleep(3.5)
+
+                degrees = int(float(topics["main_move_turn"]))
+                distance = int(float(topics["main_move_straight"]))*10
+                tryCatchPuck += 1
+                print("TAG robot not found")
+        """
+        # Que faire si on échoue 20 fois => Rentrer à la base c'est useless car il n'est de toute manière pas détecté :thinking: Stock dans ce code, la dernière coordonnée du plateau pour le renvoyer dans son coin ?
 
         print("main_move_turn: " + str(degrees) + "°")
         print("main_move_straight: " + str(distance) + " mm")
