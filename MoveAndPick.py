@@ -181,7 +181,7 @@ while True:
             turnLeft(90)
         time.sleep(4)
 
-        goForward(1200)
+        goForward(1100)
         time.sleep(6) # A test avec 3 s
 
         # IF BLUE
@@ -216,16 +216,16 @@ while True:
         # IF BLUE
         if  topics["teamcolor"] == "blue":
             print("Blue - Turn right back")
-            turnLeft(30) # turn 180° to drop puck backwards and put ball on top
+            turnLeft(45) # turn 180° to drop puck backwards and put ball on top
         # IF GREEN
         if  topics["teamcolor"] == "green":
             print("Green - Turn left back")
-            turnRight(30)
+            turnRight(45)
         time.sleep(4)
 
         #goForward(600) # Go back (Forward due to the turn 180° in the plate) to be seen by the camera
         # CLOSE the servo motor at the back of the robot
-        goBackward(600) # Go back to be seen by the camera
+        goBackward(700) # Go back to be seen by the camera
         time.sleep(4)
 
         # Relay with camera on Jetson
