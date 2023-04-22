@@ -153,11 +153,12 @@ while True:
         points += 5
         start = time.time() # Start calculating time
         publish("main_points", points)
+        time.sleep(1)
         # CLOSE the servo motor at the back of the robot
 
         # ABANDON SEQUENCE JUST GO and slide with the pucks 😏
         goForward(600)
-        time.sleep(4)
+        time.sleep(2)
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -167,10 +168,10 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn right")
             turnRight(90)
-        time.sleep(3)
+        time.sleep(2)
 
         goForward(500)
-        time.sleep(3)
+        time.sleep(2)
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -180,10 +181,10 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn left")
             turnLeft(90)
-        time.sleep(4)
+        time.sleep(2)
 
         goForward(1100)
-        time.sleep(5) # A test avec 3 s
+        time.sleep(4) # A test avec 3 s
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -193,10 +194,10 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn left")
             turnLeft(90)
-        time.sleep(3)
+        time.sleep(2)
 
-        goForward(500)
-        time.sleep(4) # Drop pucks
+        goForward(400)
+        time.sleep(3) # Drop pucks
         """
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -222,12 +223,12 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn left back")
             turnRight(45)
-        time.sleep(4)
+        time.sleep(3)
 
         #goForward(600) # Go back (Forward due to the turn 180° in the plate) to be seen by the camera
         # CLOSE the servo motor at the back of the robot
-        goBackward(700) # Go back to be seen by the camera
-        time.sleep(4)
+        goBackward(850) # Go back to be seen by the camera
+        time.sleep(3)
 
         # Relay with camera on Jetson
         flag_start_move = False
