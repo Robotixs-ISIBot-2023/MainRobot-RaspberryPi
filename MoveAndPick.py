@@ -298,8 +298,21 @@ while True:
         done = time.time()
         elapsed = done - start
         print("Time since start: " + str(elapsed) + " s")
-        if elapsed >= 80 :
+        if elapsed >= 60 :
             tryCatchPuck = 20 # Same as not found pucks 20 times -> EMPTY MAIN ROBOT + GO BASE
+        
+        if elapsed >= 95 :
+            tryCatchPuck = 20 # Same as not found pucks 20 times -> EMPTY MAIN ROBOT + GO BASE
+            publish("main_points", points)
+            publish("main_finish", True) # Annimation with ESP32
+
+            print("")
+            print("")
+            print("  FINISH")
+            print("  Points : " + str(points))
+            print("")
+            print("")
+            break
 
         if tryCatchPuck >= 20 and topics["main_goToBase"] == False:
             print("Not found pucks 20 times so go to plate and go back to base")
