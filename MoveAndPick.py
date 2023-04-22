@@ -24,6 +24,7 @@ from Captors.buttonsSetup import *
 from Captors.gpio_start_setup import *
 
 import time
+import file
 
 #=========================================================================================================#
 
@@ -110,6 +111,8 @@ client.on_message = on_message
 """
     MAIN CODE
 """
+
+exec(open('/home/pi/module_lidar.py').read())
 
 # Wait the start & the team color
 while topics["main_start"] == 0 or topics["teamcolor"] == "null":
