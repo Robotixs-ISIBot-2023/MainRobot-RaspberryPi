@@ -27,7 +27,7 @@ import paho.mqtt.client as mqtt
 
 # MQTT broker address
 #broker_address = "172.30.16.17" # Jetson IP (because the MQTT broker is in the Jetson)
-broker_address = "192.168.0.101" # Jetson wifi IP (because the MQTT broker is in the Jetson)
+broker_address = "192.168.0.104" # Jetson wifi IP (because the MQTT broker is in the Jetson)
 #broker_address = "192.168.0.228" # RbP 4 IP
 
 # Create a client instance
