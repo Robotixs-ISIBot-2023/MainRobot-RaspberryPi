@@ -41,6 +41,7 @@ points = 0
 flag_start_move = True
 tryCatchPuck = 0
 nbrCatchPuck = 0
+old_button_state = 0
 
 """
     MQTT communication
