@@ -255,6 +255,8 @@ while True:
                 topics["main_goToBase"] = bool(topics["main_goToBase"])
                 if topics["main_goToBase"] == True :
                     points += 15 # Theoricaly go to base
+                elif topics["main_isfull"] == False and topics["main_isfull2"] == False:
+                    nbrCatchPuck += 1
             print("Tourne à droite")
             time.sleep(4)
         # If turn left
@@ -274,7 +276,6 @@ while True:
             goBackward(- distance)
             print("Recule")
             time.sleep(4)
-        nbrCatchPuck += 1
 
         #print("GO TO BASE ??? " + str(topics["main_goToBase"]))
         #print(type(topics["main_goToBase"]))
