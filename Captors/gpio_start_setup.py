@@ -26,7 +26,7 @@ if __name__ == '__main__':
 
     while True :
         buttonState = GPIO.input(Pin_switch)
-        print(buttonState)
+        #print(buttonState)
         """ Pour utiliser le switch de depart en no"""
         
         if buttonState == 1 and old_button_state == 0:  
