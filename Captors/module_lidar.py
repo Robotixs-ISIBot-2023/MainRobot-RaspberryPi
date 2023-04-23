@@ -6,6 +6,7 @@ import math
 import RPi.GPIO as GPIO
 import sys
 
+import time
 
 # Parametrage pin d'intéruption pour le moteur
 GPIO.setmode(GPIO.BOARD)
@@ -19,6 +20,8 @@ Taille_Robot = 25
 Distance_Securite = 80  #a peu prés 30 cm
 Distance_Securite_Arriere = 100
 
+tryLidar = 0
+start = 0
 
 while True :
     ydlidar.os_init();
@@ -46,19 +49,33 @@ while True :
                 for p in scan.points:
                     curr_angle = int(math.degrees(p.angle)+180)
                     dist = (p.range)*254 # 1 ich = 25.4 mm  *0.0254*10*1000 #Il renvoie le range en 1/10 de inches, *0.0254 => to dm, *10 to m, *1000 to mm
-                    if dist <= Distance_Securite and dist != 0:
-                        if curr_angle < 46 and curr_angle > 0 or curr_angle < 359 and curr_angle > 315 :
-                            GPIO.output(Pin_Stop,1)
                     """
                     if dist <= Distance_Securite and dist != 0:
                         if curr_angle < 225 and curr_angle > 136 or curr_angle < 46 and curr_angle > 0 or curr_angle < 359 and curr_angle > 315 :
                             GPIO.output(Pin_Stop,1)
-                    """
-                    """
-                    if dist <= Distance_Securite_Arriere and dist != 0:
-                        if curr_angle < 225 and curr_angle > 136 :
+
+                    # ARRIERE
+                    if dist <= Distance_Securite and dist != 0:
+                        if curr_angle < 46 and curr_angle > 0 or curr_angle < 359 and curr_angle > 315 :
                             GPIO.output(Pin_Stop,1)
                     """
+
+                    # AVANT 
+                    if dist <= Distance_Securite_Arriere and dist != 0:
+                        if curr_angle < 225 and curr_angle > 136 :
+                            print("LIDAR DETECT")
+                            #GPIO.output(Pin_Stop,1)
+                            tryLidar += 1
+                            if tryLidar == 1:
+                                start = time.time() # Start calculating time
+
+                    done = time.time()
+                    elapsed = done - start 
+                    if tryLidar >= 2 and elapsed < 1 :
+                        tryLidar = 0
+                        GPIO.output(Pin_Stop,1)
+                    elif elapsed >= 1 :
+                        tryLidar = 0
 
                     GPIO.output(Pin_Stop,0)
             else :

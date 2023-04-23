@@ -24,7 +24,7 @@ from Captors.buttonsSetup import *
 from Captors.gpio_start_setup import *
 
 import time
-import subprocess
+#import subprocess
 
 #=========================================================================================================#
 
@@ -114,7 +114,7 @@ client.on_message = on_message
 """
 
 # Exécuter le programme secondaire
-process = subprocess.Popen(['python', './Captors/module_lidar.py'])
+#process = subprocess.Popen(['python', './Captors/module_lidar.py'])
 
 # Wait the start & the team color
 while topics["main_start"] == 0 or topics["teamcolor"] == "null":
@@ -159,7 +159,7 @@ while True:
 
         # ABANDON SEQUENCE JUST GO and slide with the pucks 😏
         goForward(600)
-        time.sleep(2)
+        time.sleep(4)
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -169,10 +169,10 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn right")
             turnRight(90)
-        time.sleep(2)
+        time.sleep(4)
 
         goForward(500)
-        time.sleep(2)
+        time.sleep(4)
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -182,10 +182,10 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn left")
             turnLeft(90)
-        time.sleep(2)
+        time.sleep(4)
 
         goForward(1100)
-        time.sleep(4) # A test avec 3 s
+        time.sleep(6) # A test avec 3 s
 
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -195,10 +195,10 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn left")
             turnLeft(90)
-        time.sleep(2)
+        time.sleep(4)
 
         goForward(400)
-        time.sleep(3) # Drop pucks
+        time.sleep(5) # Drop pucks
         """
         # IF BLUE
         if  topics["teamcolor"] == "blue":
@@ -224,12 +224,12 @@ while True:
         if  topics["teamcolor"] == "green":
             print("Green - Turn left back")
             turnRight(45)
-        time.sleep(3)
+        time.sleep(5)
 
         #goForward(600) # Go back (Forward due to the turn 180° in the plate) to be seen by the camera
         # CLOSE the servo motor at the back of the robot
         goBackward(850) # Go back to be seen by the camera
-        time.sleep(3)
+        time.sleep(5)
 
         # Relay with camera on Jetson
         flag_start_move = False
