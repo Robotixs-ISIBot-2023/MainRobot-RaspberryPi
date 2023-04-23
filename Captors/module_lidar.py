@@ -1,6 +1,7 @@
 import os
 import time
 import ydlidar
+#from YDLidar-SDK.setup import *
 import math
 import RPi.GPIO as GPIO
 import sys
@@ -16,7 +17,7 @@ GPIO.output(Pin_Stop,0)  #Level LOW
 
 Taille_Robot = 25
 Distance_Securite = 80  #a peu prés 30 cm
-Distance_Securite_Arriere = 120
+Distance_Securite_Arriere = 100
 
 
 while True :
@@ -48,9 +49,11 @@ while True :
                     if dist <= Distance_Securite and dist != 0:
                         if curr_angle < 225 and curr_angle > 136 or curr_angle < 46 and curr_angle > 0 or curr_angle < 359 and curr_angle > 315 :
                             GPIO.output(Pin_Stop,1)
+                    """
                     if dist <= Distance_Securite_Arriere and dist != 0:
                         if curr_angle < 225 and curr_angle > 136 :
                             GPIO.output(Pin_Stop,1)
+                    """
 
                     GPIO.output(Pin_Stop,0)
             else :
