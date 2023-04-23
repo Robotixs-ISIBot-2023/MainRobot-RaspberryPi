@@ -240,7 +240,7 @@ while True:
         time.sleep(3.5)
         
         degrees = int(float(topics["main_move_turn"]))
-        distance = int(float(topics["main_move_straight"]))*10
+        distance = int(float(topics["main_move_straight"]) * 10)
 
         """
         if degrees == 180 and distance == 0:
