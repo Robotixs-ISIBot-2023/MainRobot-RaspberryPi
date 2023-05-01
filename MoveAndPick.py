@@ -36,13 +36,6 @@ import time
 
 points = 0
 
-#================================================== Don't touch ==================================================#
-
-flag_start_move = True
-tryCatchPuck = 0
-nbrCatchPuck = 0
-old_button_state = 0
-
 """
     MQTT communication
 """
@@ -54,7 +47,20 @@ teamcolor : null par défaut, blue or green pour choisir # Aussi avec button
 main_send_cameradata : 0 par défaut ou pour stop, 1 pour envoyer des données de déplacement caméra
 main_move_straight : INT donnée par la caméra pour avancer/reculer
 main_move_turn : INT donnée par la caméra pour tourner
+
+main_isfull : BOOL True lors de la requête Jetson renvoie un trajet vers une assiette
+main_isfull2 : BOOL True lors de la requête Jetson renvoie un angle pour avancer droit dans l'assiette
+main_goToBase : BOOL True avec "main_isfull" et "main_isfull2" à False retournera un trajet vers la base par la Jetson
+
+main_points : INT points qu'estime le gros robot
 """
+
+#================================================== Don't touch ==================================================#
+
+flag_start_move = True
+tryCatchPuck = 0
+nbrCatchPuck = 0
+old_button_state = 0
 
 #=========================================================================================================#
 
